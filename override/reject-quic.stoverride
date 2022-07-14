@@ -1,0 +1,8 @@
+name: 屏蔽 HTTP3 / QUIC
+desc: 让 QUIC 流量回落到 HTTP2，避免 UDP 被 QoS
+
+rules:
+  - SCRIPT,quic,REJECT
+script:
+  shortcuts:
+    quic: network == 'udp' and dst_port == 443

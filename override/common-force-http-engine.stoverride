@@ -1,0 +1,6 @@
+name: 对常见端口强制使用 HTTP 引擎
+desc: 配合仅 Tunnel 模式使用，避免 Rewrite 失效
+
+http:
+  force-http-engine:
+    - "*:80"

@@ -1,0 +1,6 @@
+name: 兼容模式（关闭 Fake IP）
+desc: 仅推荐在网游无法联网时使用
+
+dns:
+  fake-ip-filter:
+    - "+"
