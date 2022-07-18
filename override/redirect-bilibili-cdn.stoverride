@@ -1,0 +1,24 @@
+name: BiliBili 重定向 MCDN / PCDN 到正规 CDN
+desc: 加载更流畅的 BiliBili 更值得干杯🍻！
+
+http:
+  force-http-engine:
+    - "upos-sz-mirror*.bilivideo.com:80"
+    - "*:4480"
+    - "*:9102"
+  url-rewrite:
+    - https?:\/\/(.*):4480\/upgcxcode http://upos-sz-mirrorcos.bilivideo.com/upgcxcode 302
+    - https?:\/\/(.*):9102\/upgcxcode http://upos-sz-mirrorcos.bilivideo.com/upgcxcode 302
+    - https?:\/\/upos-sz-mirror(?!cos\.).*bilivideo\.com\/upgcxcode http://upos-sz-mirrorcos.bilivideo.com/upgcxcode 302
+    # alternative:
+    # upos-sz-mirrorhw.bilivideo.com
+    # upos-sz-mirrorcos.bilivideo.com
+    # upos-sz-mirrorcoso1.bilivideo.com
+    # upos-sz-mirrorcoso2.bilivideo.com
+    # upos-sz-mirrorbs.bilivideo.com
+    # upos-sz-mirrorali.bilivideo.com
+script:
+  shortcuts:
+    bilibili-quic: network == 'udp' and geoip(dst_ip) == 'CN' and dst_port == 3478
+rules:
+  - SCRIPT,bilibili-quic,REJECT
